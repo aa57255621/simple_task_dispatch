@@ -7,6 +7,9 @@ import org.apache.commons.io.FileUtils;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.util.ResourceUtils;
+
+import javax.annotation.PostConstruct;
+import javax.annotation.PreDestroy;
 import java.io.File;
 import java.io.IOException;
 import java.util.List;
@@ -14,7 +17,8 @@ import java.util.List;
 @Configuration
 public class TaskInfo {
     public static List<TaskInfoDto> taskInfoConfig;
-    @Bean
+
+    @PostConstruct
     public void initTask() {
         try{
             File file = ResourceUtils.getFile("classpath:task-config.json");
