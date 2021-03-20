@@ -3,9 +3,20 @@ package com.example.demo.agent;
 import com.example.demo.commons.agetworker.AgentWorker;
 import com.example.demo.commons.dto.CustomProperties;
 import groovy.util.logging.Slf4j;
+import org.springframework.beans.factory.BeanNameAware;
 
 @Slf4j
-public abstract class BaseAgent implements AgentWorker {
+public abstract class BaseAgent implements AgentWorker, BeanNameAware  {
+
+    String currentAgentName;
+
+    @Override
+    /**
+     * 类实现BeanNameAware，spring会将beanName传给该方法
+     */
+    public void setBeanName(String name) {
+        currentAgentName = name;
+    }
 
     @Override
     public void execute(CustomProperties custom) {
@@ -15,11 +26,6 @@ public abstract class BaseAgent implements AgentWorker {
         doMajor(custom);
         doPostMajor(custom);
         System.out.println(custom.getWorkerType() + ": agent run success timeCost:"+(System.currentTimeMillis() - start) );
-    }
-
-    @Override
-    public String name() {
-        return getClass().getSimpleName();
     }
 
     /**

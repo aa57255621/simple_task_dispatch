@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class Test2Agent extends BaseAgent{
     @Override
     protected void doPreMajor(CustomProperties customProperties) {
-        System.out.println(customProperties.getWorkerType() + ": 执行Test2Agent的doPreMajor()");
+        System.out.println(currentAgentName + ": 执行Test2Agent的doPreMajor()");
         super.doPreMajor(customProperties);
     }
 

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Component;
 public class Test1Agent extends BaseAgent{
     @Override
     protected void doPreMajor(CustomProperties customProperties) {
-        System.out.println(customProperties.getWorkerType() + ": Test1Agent doPreMajor");
+        System.out.println(currentAgentName + ": Test1Agent doPreMajor");
 
         super.doPreMajor(customProperties);
     }

@@ -1,13 +1,14 @@
 package com.example.demo.agent;
 
 import com.example.demo.commons.dto.CustomProperties;
+import org.springframework.beans.factory.DisposableBean;
 import org.springframework.stereotype.Component;
 
 @Component
-public class Test3Agent extends BaseAgent{
+public class Test3Agent extends BaseAgent implements DisposableBean {
     @Override
     protected void doPreMajor(CustomProperties customProperties) {
-        System.out.println(customProperties.getWorkerType() + ": 执行Test3Agent的doPreMajor()方法");
+        System.out.println( currentAgentName + ": 执行Test3Agent的doPreMajor()方法");
         super.doPreMajor(customProperties);
     }
 
@@ -18,7 +19,14 @@ public class Test3Agent extends BaseAgent{
 
     @Override
     protected void doPostMajor(CustomProperties customProperties) {
-        System.out.println(customProperties.getWorkerType() + ": 执行Test3Agent的doPostMajor()方法");
+        System.out.println(currentAgentName + ": 执行Test3Agent的doPostMajor()方法");
         super.doPostMajor(customProperties);
     }
+
+    @Override
+    public void destroy() throws Exception {
+        System.out.println("调用destroy()");
+
+    }
+
 }

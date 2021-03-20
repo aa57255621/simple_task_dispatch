@@ -6,7 +6,7 @@ import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
 
 public class TextOutputGraphUtil {
-    public static void outputGraph(String input){
+    public  void outputGraph(String input){
         try {
             Font font = new Font("黑体", Font.PLAIN, 20);
 

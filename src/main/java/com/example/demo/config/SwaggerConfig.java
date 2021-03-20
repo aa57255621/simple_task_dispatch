@@ -31,4 +31,5 @@ public class SwaggerConfig {
     private ApiInfo apiInfo(){
         return new ApiInfoBuilder().title("swagger ui").description("任务调度系统").version("1.0").build();
     }
+
 }

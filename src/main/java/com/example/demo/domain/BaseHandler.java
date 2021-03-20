@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 import java.util.List;
 
 @Component
-@Scope("prototype")
+@Scope("singleton")
 public class BaseHandler implements Runnable{
 
     private CustomProperties properties;
