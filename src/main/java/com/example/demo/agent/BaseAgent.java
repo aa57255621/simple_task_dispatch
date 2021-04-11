@@ -2,24 +2,30 @@ package com.example.demo.agent;
 
 import com.example.demo.commons.agetworker.AgentWorker;
 import com.example.demo.commons.dto.CustomProperties;
+import com.example.demo.config.hotdeploy.ExcludeScan;
 import groovy.util.logging.Slf4j;
-import org.springframework.beans.factory.BeanNameAware;
+import org.springframework.stereotype.Component;
 
+/**
+ * @author lp225484
+ */
 @Slf4j
-public abstract class BaseAgent implements AgentWorker, BeanNameAware  {
+@Component
+@ExcludeScan
+public class BaseAgent implements AgentWorker  {
 
     String currentAgentName;
 
-    @Override
-    /**
+  /*  @Override
+    *//**
      * 类实现BeanNameAware，spring会将beanName传给该方法
-     */
+     *//*
     public void setBeanName(String name) {
         currentAgentName = name;
-    }
-
+    }*/
     @Override
     public void execute(CustomProperties custom) {
+        this.currentAgentName = this.getClass().getSimpleName();
         long start = System.currentTimeMillis();
         System.out.println(custom.getWorkerType() + ": BaseAgent execute start");
         doPreMajor(custom);

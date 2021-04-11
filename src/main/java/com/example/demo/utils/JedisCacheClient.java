@@ -8,7 +8,7 @@ public class JedisCacheClient {
 
     static {
         if(jedisPool == null){
-            jedisPool = SpringContextUtil.getBean(JedisPool.class);
+            jedisPool = SpringBeanUtil.getBean(JedisPool.class);
         }
     }
 

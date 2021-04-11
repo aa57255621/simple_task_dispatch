@@ -1,15 +1,15 @@
 {
   "taskList": [{
     "name": "worker1",
-    "agentList":["test1Agent","test2Agent","test3Agent"]
+    "agentList":["Test1Agent","Test2Agent","Test3Agent"]
   },{
     "name": "worker2",
-    "agentList":["test2Agent","test1Agent","test3Agent"]
+    "agentList":["Test2Agent","Test1Agent","Test3Agent"]
   },{
     "name": "worker3",
-    "agentList":["test2Agent","test2Agent","test3Agent"]
+    "agentList":["Test2Agent","Test2Agent","Test3Agent"]
   },{
     "name": "worker4",
-    "agentList":["test2Agent","test1Agent"]
+    "agentList":["Test2Agent","Test1Agent"]
   }]
 }

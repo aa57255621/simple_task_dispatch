@@ -6,4 +6,5 @@ package com.example.demo.config.hotdeploy;
  * @description:
  */
 public class HotDeploy {
+    public static boolean agentWorkerHotDeploy = false;
 }

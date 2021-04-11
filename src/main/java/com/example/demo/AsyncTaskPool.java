@@ -3,6 +3,8 @@ package com.example.demo;
 import com.example.demo.utils.JedisCacheClient;
 import lombok.Getter;
 import lombok.Setter;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 import java.util.Date;
@@ -11,6 +13,7 @@ import java.util.concurrent.LinkedBlockingDeque;
 
 @Component
 public class AsyncTaskPool {
+    private Logger logger = LoggerFactory.getLogger(AsyncTaskPool.class);
     /**
      * 任务状态
      */
@@ -66,6 +69,7 @@ public class AsyncTaskPool {
                 task.status = TaskStatus.SUCCESS;
             }catch (Exception e){
                 task.status = TaskStatus.FAILED;
+                logger.error(e.getMessage());
             }finally {
                 JedisCacheClient.expire(task.taskId, task.status.name(), 1);
             }

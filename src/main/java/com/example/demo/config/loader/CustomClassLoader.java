@@ -1,4 +1,4 @@
-package com.example.demo.loader;
+package com.example.demo.config.loader;
 import java.io.*;
 import java.nio.ByteBuffer;
 import java.nio.channels.FileChannel;

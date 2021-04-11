@@ -6,11 +6,11 @@ import org.springframework.beans.factory.BeanFactoryAware;
 import org.springframework.stereotype.Component;
 
 @Component
-public class SpringContextUtil implements BeanFactoryAware {
+public class SpringBeanUtil implements BeanFactoryAware {
     private static BeanFactory beanFactory;
     @Override
     public void setBeanFactory(BeanFactory beanFactory) throws BeansException {
-        SpringContextUtil.beanFactory = beanFactory;
+        SpringBeanUtil.beanFactory = beanFactory;
     }
     public static <T> T getBean(String beanName){
         if(beanFactory != null){

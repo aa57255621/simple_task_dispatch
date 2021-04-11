@@ -1,10 +1,15 @@
 package com.example.demo.agent;
 
 import com.example.demo.commons.dto.CustomProperties;
+import com.example.demo.config.hotdeploy.ExcludeScan;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.stereotype.Component;
 
+/**
+ * @author lp225484
+ */
 @Component
+@ExcludeScan
 public class Test3Agent extends BaseAgent implements DisposableBean {
     @Override
     protected void doPreMajor(CustomProperties customProperties) {

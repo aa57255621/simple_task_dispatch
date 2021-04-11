@@ -11,16 +11,16 @@ public interface AgentWorkerChain {
     void run(CustomProperties customProperties);
 
     /**
-     * 添加一个agent节点
-     * @param agentWorker
+     * 添加一个agent节点名称
+     * @param agentName
      * @return
      */
-    AgentWorkerChain addWorker(AgentWorker agentWorker);
+    AgentWorkerChain addWorker(String agentName) throws ClassNotFoundException;
 
     /**
-     * 添加多个agent节点
-     * @param agentWorkers
+     * 添加多个agent节点名称
+     * @param agentNames
      * @return
      */
-    AgentWorkerChain addWorkers(AgentWorker ... agentWorkers);
+    AgentWorkerChain addWorkers(String  ... agentNames) throws ClassNotFoundException;
 }

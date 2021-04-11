@@ -1,20 +1,15 @@
-package com.example.demo;
+package com.example.demo.config.hotdeploy;
 
 import com.example.demo.utils.SpringContextUtils;
 import groovy.util.logging.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
-import org.springframework.beans.factory.annotation.Value;
-import org.springframework.context.ApplicationContext;
-import org.springframework.core.io.support.PropertiesLoaderUtils;
 import org.springframework.core.type.AnnotationMetadata;
 import org.springframework.core.type.classreading.MetadataReader;
 import org.springframework.core.type.classreading.MetadataReaderFactory;
 import org.springframework.core.type.filter.TypeFilter;
-import org.springframework.stereotype.Component;
 
 import java.io.IOException;
-import java.util.Properties;
 
 /**
  * @author : lp225484
@@ -29,7 +24,7 @@ public class AgentCustomLoaderController implements TypeFilter {
     @Override
     public boolean match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory) throws IOException {
         AnnotationMetadata annotationMetadata = metadataReader.getAnnotationMetadata();
-        if(!agentCustomLoader) {
+        if(!HotDeploy.agentWorkerHotDeploy) {
             return false;
         }
         boolean excludeScan = annotationMetadata.hasAnnotation("ExcludeScan");

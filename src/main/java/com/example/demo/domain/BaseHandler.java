@@ -3,9 +3,11 @@ package com.example.demo.domain;
 import com.example.demo.commons.agetworker.AgentWorkerChain;
 import com.example.demo.commons.agetworker.AgentWorkerChainImpl;
 import com.example.demo.commons.dto.CustomProperties;
-import com.example.demo.utils.SpringContextUtil;
 import com.example.demo.utils.TaskInfo;
 import com.example.demo.utils.dto.TaskInfoDto;
+import lombok.SneakyThrows;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 import java.util.List;
@@ -13,6 +15,7 @@ import java.util.List;
 @Component
 @Scope("singleton")
 public class BaseHandler implements Runnable{
+    Logger logger = LoggerFactory.getLogger(BaseHandler.class);
 
     private CustomProperties properties;
 
@@ -40,16 +43,22 @@ public class BaseHandler implements Runnable{
 
     }
 
+    @SneakyThrows
     @Override
     public void run() {
         String workerType = properties.getWorkerType();
+
         // handler(properties);
         AgentWorkerChain agentWorkerChain = new AgentWorkerChainImpl();
         for (TaskInfoDto taskInfo: TaskInfo.taskInfoConfig) {
             if(taskInfo.getName().equals(workerType)){
                 List<String> agentList = taskInfo.getAgentList();
                 for (String agentName: agentList ) {
-                    agentWorkerChain.addWorker(SpringContextUtil.getBean(agentName));
+                    try {
+                        agentWorkerChain.addWorker(agentName);
+                    } catch (ClassNotFoundException e) {
+                        logger.error(e.getMessage());
+                    }
                 }
             }
         }
