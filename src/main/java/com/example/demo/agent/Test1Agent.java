@@ -9,7 +9,7 @@ import org.springframework.stereotype.Component;
  */
 @Component
 @ExcludeScan
-public class Test1Agent extends BaseAgent{
+public class Test1Agent extends BaseAgent {
     @Override
     protected void doPreMajor(CustomProperties customProperties) {
         System.out.println(currentAgentName + ": Test1Agent   doPreMajor 11111111111111111test cdffdfdfompile");

@@ -5,8 +5,11 @@ import java.awt.font.FontRenderContext;
 import java.awt.font.GlyphVector;
 import java.awt.geom.AffineTransform;
 
+/**
+ * @author lp225484
+ */
 public class TextOutputGraphUtil {
-    public  void outputGraph(String input){
+    public void outputGraph(String input) {
         try {
             Font font = new Font("黑体", Font.PLAIN, 20);
 

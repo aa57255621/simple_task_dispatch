@@ -16,17 +16,18 @@ import java.util.List;
 
 @Component
 @ExcludeScan
-public class AgentWorkerChainImpl implements  AgentWorkerChain {
+public class AgentWorkerChainImpl implements AgentWorkerChain {
     Logger logger = LoggerFactory.getLogger(AgentWorkerChainImpl.class);
     private List<Class<?>> workers = new ArrayList<>();
+
     @Override
     public void run(CustomProperties customProperties) {
-        for (Class<?> worker: workers) {
+        for (Class<?> worker : workers) {
             Object agent = null;
             try {
                 Method execute = worker.getMethod("execute", CustomProperties.class);
                 execute.invoke(worker.newInstance(), new Object[]{customProperties});
-            }catch (IllegalAccessException e) {
+            } catch (IllegalAccessException e) {
                 e.printStackTrace();
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
@@ -40,23 +41,22 @@ public class AgentWorkerChainImpl implements  AgentWorkerChain {
 
     @Override
     public AgentWorkerChain addWorker(String agentName) throws ClassNotFoundException {
-        if(HotDeploy.agentWorkerHotDeploy){
+        if (HotDeploy.agentWorkerHotDeploy) {
             workers.add(CustomClassLoader.getCustomClassLoader().findClass("com.example.demo.agent." + agentName));
-        }else{
-            workers.add(SpringBeanUtil.getBean(agentName.replaceFirst(agentName.substring(0,1), agentName.substring(0,1).toLowerCase())).getClass());
+        } else {
+            workers.add(SpringBeanUtil.getBean(agentName.replaceFirst(agentName.substring(0, 1), agentName.substring(0, 1).toLowerCase())).getClass());
         }
-         return this;
+        return this;
     }
 
 
-
     @Override
-    public AgentWorkerChain addWorkers(String... agentNames) throws ClassNotFoundException{
-        for (String agentName: agentNames) {
-            if(HotDeploy.agentWorkerHotDeploy){
+    public AgentWorkerChain addWorkers(String... agentNames) throws ClassNotFoundException {
+        for (String agentName : agentNames) {
+            if (HotDeploy.agentWorkerHotDeploy) {
                 workers.add(CustomClassLoader.getCustomClassLoader().findClass("com.example.demo.agent." + agentName));
-            }else{
-                workers.add(SpringBeanUtil.getBean(agentName.replaceFirst(agentName.substring(0,1), agentName.substring(0,1).toLowerCase())).getClass());
+            } else {
+                workers.add(SpringBeanUtil.getBean(agentName.replaceFirst(agentName.substring(0, 1), agentName.substring(0, 1).toLowerCase())).getClass());
             }
         }
         return this;

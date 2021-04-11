@@ -5,6 +5,7 @@ import org.springframework.context.event.ApplicationContextEvent;
 
 /**
  * 自定义监听类
+ * @author lp225484
  */
 public class EmailEvent extends ApplicationContextEvent {
     private String message;

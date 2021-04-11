@@ -14,9 +14,13 @@ import org.slf4j.LoggerFactory;
 import java.util.ArrayList;
 import java.util.Collection;
 
+/**
+ * @author lp225484
+ */
 @Slf4j
 public final class ModuloShardingTableAlgorithm implements PreciseShardingAlgorithm<Long>, RangeShardingAlgorithm<Long> {
     Logger log = LoggerFactory.getLogger(ModuloShardingTableAlgorithm.class);
+
     /**
      * 选表
      */

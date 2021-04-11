@@ -5,6 +5,7 @@ import groovy.util.logging.Slf4j;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.core.io.support.PropertiesLoaderUtils;
+
 import java.io.IOException;
 import java.util.Properties;
 
@@ -14,7 +15,7 @@ import java.util.Properties;
  * @description:
  */
 @Slf4j
-public class SpringContextUtils{
+public class SpringContextUtils {
     private static Properties applicationContext;
 
     Logger logger = LoggerFactory.getLogger(SpringContextUtils.class);
@@ -26,10 +27,10 @@ public class SpringContextUtils{
             applicationContext = PropertiesLoaderUtils.loadAllProperties("application.properties");
             Boolean agentCustomLoader = Boolean.parseBoolean(applicationContext.getProperty("app.agentCustomLoader"));
             HotDeploy.agentWorkerHotDeploy = agentCustomLoader;
-            if(agentCustomLoader){
+            if (agentCustomLoader) {
                 System.out.println(" current agent open custom class loader");
                 System.out.println("当前开启agent动态加载，可以直接替换agent包下的*Agent.class热部署");
-            }else{
+            } else {
                 System.out.println(" current agent class spring loader");
             }
         } catch (IOException e) {
@@ -37,7 +38,7 @@ public class SpringContextUtils{
         }
     }
 
-    public static String getApplicationConfig(String key){
+    public static String getApplicationConfig(String key) {
         return applicationContext.getProperty(key);
     }
 

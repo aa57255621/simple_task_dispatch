@@ -10,6 +10,7 @@ import org.springframework.context.annotation.Configuration;
 
 /**
  * spring容器调用ConfigurableApplicationContext的start()方法时，触发该事件
+ * @author lp225484
  */
 @Configuration
 public class ApplicationStaredEventTest implements ApplicationListener<ApplicationStartedEvent> {
@@ -29,7 +30,7 @@ public class ApplicationStaredEventTest implements ApplicationListener<Applicati
      * 测试通过注解注入bean
      */
     @Bean("textOutputGraphUtil")
-    public TextOutputGraphUtil textOutputGraphUtil(){
+    public TextOutputGraphUtil textOutputGraphUtil() {
         return new TextOutputGraphUtil();
     }
 }

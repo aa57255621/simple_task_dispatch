@@ -13,7 +13,7 @@ import org.springframework.stereotype.Component;
 public class Test3Agent extends BaseAgent implements DisposableBean {
     @Override
     protected void doPreMajor(CustomProperties customProperties) {
-        System.out.println( currentAgentName + ": 执行Test3Agent的doPreMajor()方法");
+        System.out.println(currentAgentName + ": 执行Test3Agent的doPreMajor()方法");
         super.doPreMajor(customProperties);
     }
 

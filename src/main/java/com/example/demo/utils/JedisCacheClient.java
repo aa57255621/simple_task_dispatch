@@ -1,13 +1,17 @@
 package com.example.demo.utils;
+
 import redis.clients.jedis.Jedis;
 import redis.clients.jedis.JedisPool;
 
+/**
+ * @author lp225484
+ */
 public class JedisCacheClient {
 
     private static JedisPool jedisPool;
 
     static {
-        if(jedisPool == null){
+        if (jedisPool == null) {
             jedisPool = SpringBeanUtil.getBean(JedisPool.class);
         }
     }
@@ -26,7 +30,7 @@ public class JedisCacheClient {
         } catch (Exception e) {
             e.printStackTrace();
         } finally {
-           close(jedis);
+            close(jedis);
         }
 
     }
@@ -63,6 +67,7 @@ public class JedisCacheClient {
             close(jedis);
         }
     }
+
     /**
      * 获取key的值
      */
@@ -82,9 +87,10 @@ public class JedisCacheClient {
 
     /**
      * 释放连接
+     *
      * @param jedis
      */
-    public static void close(Jedis jedis){
+    public static void close(Jedis jedis) {
         if (jedis != null) {
             jedis.close();
             if (jedis.isConnected()) {

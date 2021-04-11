@@ -24,11 +24,11 @@ public class AgentCustomLoaderController implements TypeFilter {
     @Override
     public boolean match(MetadataReader metadataReader, MetadataReaderFactory metadataReaderFactory) throws IOException {
         AnnotationMetadata annotationMetadata = metadataReader.getAnnotationMetadata();
-        if(!HotDeploy.agentWorkerHotDeploy) {
+        if (!HotDeploy.agentWorkerHotDeploy) {
             return false;
         }
         boolean excludeScan = annotationMetadata.hasAnnotation("ExcludeScan");
-        if(excludeScan){
+        if (excludeScan) {
             return true;
         }
         return false;

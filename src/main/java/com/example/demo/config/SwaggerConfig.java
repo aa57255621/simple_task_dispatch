@@ -11,6 +11,9 @@ import springfox.documentation.spi.DocumentationType;
 import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+/**
+ * @author lp225484
+ */
 @Configuration
 @EnableSwagger2
 public class SwaggerConfig {
@@ -19,7 +22,7 @@ public class SwaggerConfig {
     private boolean swaggerEnable;
 
     @Bean
-    public Docket createRestApi(){
+    public Docket createRestApi() {
         return new Docket(DocumentationType.SPRING_WEB).apiInfo(apiInfo())
                 .enable(swaggerEnable)
                 .select()
@@ -28,7 +31,7 @@ public class SwaggerConfig {
                 .build();
     }
 
-    private ApiInfo apiInfo(){
+    private ApiInfo apiInfo() {
         return new ApiInfoBuilder().title("swagger ui").description("任务调度系统").version("1.0").build();
     }
 

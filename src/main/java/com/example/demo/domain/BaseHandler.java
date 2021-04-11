@@ -10,11 +10,15 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
+
 import java.util.List;
 
+/**
+ * @author lp225484
+ */
 @Component
 @Scope("singleton")
-public class BaseHandler implements Runnable{
+public class BaseHandler implements Runnable {
     Logger logger = LoggerFactory.getLogger(BaseHandler.class);
 
     private CustomProperties properties;
@@ -50,10 +54,10 @@ public class BaseHandler implements Runnable{
 
         // handler(properties);
         AgentWorkerChain agentWorkerChain = new AgentWorkerChainImpl();
-        for (TaskInfoDto taskInfo: TaskInfo.taskInfoConfig) {
-            if(taskInfo.getName().equals(workerType)){
+        for (TaskInfoDto taskInfo : TaskInfo.taskInfoConfig) {
+            if (taskInfo.getName().equals(workerType)) {
                 List<String> agentList = taskInfo.getAgentList();
-                for (String agentName: agentList ) {
+                for (String agentName : agentList) {
                     try {
                         agentWorkerChain.addWorker(agentName);
                     } catch (ClassNotFoundException e) {

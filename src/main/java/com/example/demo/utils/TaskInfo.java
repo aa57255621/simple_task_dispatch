@@ -14,19 +14,22 @@ import java.io.File;
 import java.io.IOException;
 import java.util.List;
 
+/**
+ * @author lp225484
+ */
 @Configuration
 public class TaskInfo {
     public static List<TaskInfoDto> taskInfoConfig;
 
     @PostConstruct
     public void initTask() {
-        try{
+        try {
             File file = ResourceUtils.getFile("classpath:task-config.json");
             String json = FileUtils.readFileToString(file);
             JSONObject jsonObject = JSONObject.parseObject(json);
             JSONArray taskList = jsonObject.getJSONArray("taskList");
             taskInfoConfig = taskList.toJavaList(TaskInfoDto.class);
-        }catch (IOException e){
+        } catch (IOException e) {
             System.out.println(e);
         }
 
