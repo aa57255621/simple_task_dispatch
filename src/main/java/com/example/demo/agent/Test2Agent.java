@@ -2,6 +2,8 @@ package com.example.demo.agent;
 
 import com.example.demo.commons.dto.CustomProperties;
 import com.example.demo.config.hotdeploy.ExcludeScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -10,9 +12,10 @@ import org.springframework.stereotype.Component;
 @Component
 @ExcludeScan
 public class Test2Agent extends BaseAgent {
+    Logger logger = LoggerFactory.getLogger(Test2Agent.class);
     @Override
     protected void doPreMajor(CustomProperties customProperties) {
-        System.out.println(currentAgentName + ": 执行Test2Agent的doPreMajor()");
+        logger.info(currentAgentName + ": 执行Test2Agent的doPreMajor()");
         super.doPreMajor(customProperties);
     }
 

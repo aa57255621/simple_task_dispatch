@@ -1,8 +1,6 @@
 package com.example.demo;
 
-import com.example.demo.commons.dto.CustomProperties;
 import com.example.demo.config.hotdeploy.AgentCustomLoaderController;
-import com.example.demo.domain.BaseHandler;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;

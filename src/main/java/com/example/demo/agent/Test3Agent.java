@@ -2,6 +2,8 @@ package com.example.demo.agent;
 
 import com.example.demo.commons.dto.CustomProperties;
 import com.example.demo.config.hotdeploy.ExcludeScan;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.DisposableBean;
 import org.springframework.stereotype.Component;
 
@@ -11,9 +13,10 @@ import org.springframework.stereotype.Component;
 @Component
 @ExcludeScan
 public class Test3Agent extends BaseAgent implements DisposableBean {
+    Logger logger = LoggerFactory.getLogger(Test3Agent.class);
     @Override
     protected void doPreMajor(CustomProperties customProperties) {
-        System.out.println(currentAgentName + ": 执行Test3Agent的doPreMajor()方法");
+        logger.info(currentAgentName + ": 执行Test3Agent的doPreMajor()方法");
         super.doPreMajor(customProperties);
     }
 
@@ -24,13 +27,13 @@ public class Test3Agent extends BaseAgent implements DisposableBean {
 
     @Override
     protected void doPostMajor(CustomProperties customProperties) {
-        System.out.println(currentAgentName + ": 执行Test3Agent的doPostMajor()方法");
+        logger.info(currentAgentName + ": 执行Test3Agent的doPostMajor()方法");
         super.doPostMajor(customProperties);
     }
 
     @Override
     public void destroy() throws Exception {
-        System.out.println("调用destroy()");
+        logger.info("调用destroy()");
 
     }
 

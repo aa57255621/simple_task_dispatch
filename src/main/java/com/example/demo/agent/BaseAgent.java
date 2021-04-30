@@ -4,6 +4,8 @@ import com.example.demo.commons.agetworker.AgentWorker;
 import com.example.demo.commons.dto.CustomProperties;
 import com.example.demo.config.hotdeploy.ExcludeScan;
 import groovy.util.logging.Slf4j;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Component;
 
 /**
@@ -14,17 +16,18 @@ import org.springframework.stereotype.Component;
 @ExcludeScan
 public class BaseAgent implements AgentWorker {
 
+    Logger logger = LoggerFactory.getLogger(BaseAgent.class);
     String currentAgentName;
 
     @Override
     public void execute(CustomProperties custom) {
         this.currentAgentName = this.getClass().getSimpleName();
         long start = System.currentTimeMillis();
-        System.out.println(custom.getWorkerType() + ": BaseAgent execute start");
+        logger.info(custom.getWorkerType() + ": BaseAgent execute start");
         doPreMajor(custom);
         doMajor(custom);
         doPostMajor(custom);
-        System.out.println(custom.getWorkerType() + ": agent run success timeCost:" + (System.currentTimeMillis() - start));
+        logger.info(custom.getWorkerType() + ": agent run success timeCost:" + (System.currentTimeMillis() - start));
     }
 
     /**
